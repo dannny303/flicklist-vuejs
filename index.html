@@ -5,7 +5,7 @@
 
   <script src="https://unpkg.com/vue/dist/vue.js"></script>
 
-  <title>FlickList</title>
+  <title>Dans FlickList</title>
 </head>
 <body>
   <div id="mount-target">
@@ -21,6 +21,9 @@
       </header>
 
       <ul>
+        <li v-for = "movie in watchlistItems">
+          <p>{{movie.title}}</p>
+        </li>
         <!--
         TODO 7
         Make an <li> for each movie in watchList
@@ -28,6 +31,20 @@
       </ul>
     </section>
 
+    <section id="section-browse">
+      <header>
+        <h2>Browse Movies</h2>
+      </header>
+
+      <ul>
+        <li v-for = "movie in browseItems">
+            <p>{{ movie.title }}</p>
+          <button v-on:click = "addtoWatchlist(movie)">
+            Add to Watchlist
+          </button>
+        </li>
+      </ul>
+    </section>
     <!--
     TODO 1
     Add another section, very similar to the one above, for the user to browse movies
