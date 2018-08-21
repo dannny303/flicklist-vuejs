@@ -1,7 +1,7 @@
 
 var api = {
   root: "https://api.themoviedb.org/3",
-  token: "f6bd21e39046f6a08df40d82ad8cffd3"
+  token: "50fa0b2623e5e2a9dfd28e354b414ad9"
 }
 
 var flicklistView = new Vue({
@@ -12,11 +12,17 @@ var flicklistView = new Vue({
 			// Whenever it changes, Vue will automatically re-render
 			// the html for us.
 			watchlistItems: [],
-      browseItems: [],
+			browseItems: [],
+			query: '',
       // TODO 8B
 		};
 	},
 	methods: {
+		checkAdded: function(movie){
+			console.log(this.watchlistItems.includes(movie))
+			return this.watchlistItems.includes(movie)
+
+		},
 		discoverMovies: function () {
 			/**
 			 * Makes an AJAX request to themoviedb.org, asking for some movies
@@ -34,19 +40,27 @@ var flicklistView = new Vue({
 					});
     },
     searchMovies: function(searchTerm) {
+			alert('poop')
+			alert(searchTerm)
       // Make an AJAX request to the /search/movie endpoint
       // of the API, using the query string that was passed in.
       //
       // if successful, update this.browseItems appropriately.
-      // This update will automatically trigger a re-render.
-      console.log(`searching for movies with "${searchTerm}" in their title...`);
+			// This update will automatically trigger a re-render.
+			this.browseItems = []
+			for (var x = 0; x < this.watchlistItems.length; x++){
+				browseItems.push(this.watchListItems[x])
+
+
+			}
+			console.log('searching for movies with '+searchTerm+' in their title...');
 
       // TODO 9
       // implement this function as described in the comment above
       // you can use the body of discoverMovies as a jumping off point
     },
 		addToWatchlist: function(movie) {
-			this.watchlistItems.push(movie);
+			this.watchlistItems.push(movie.title);
 		},
 	},
 	mounted: function () {

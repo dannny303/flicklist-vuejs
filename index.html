@@ -6,10 +6,15 @@
   <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
   <link rel="stylesheet" href="css/styles.css" />
 
-  <title>FlickList</title>
+  <title> Dan's FlickList</title>
 </head>
 <body>
   <div id="mount-target">
+    <form>
+      <input type="text" v-model="query">
+      <input type="submit" @click="searchMovies(query)">
+
+    </form>
     <header id="big-header">
       <h1>FlickList</h1>
       <p>Keep a list of all the movies you've been meaning to watch.</p>
@@ -24,7 +29,7 @@
       <ul>
           <!-- TODO 3 the li tag should have an "item-watchlist" class -->
           <li v-for="title in watchlistItems">
-          <p>{{ title }}</p>
+          <p class="item-watchlist">{{ title }}</p>
         </li>
       </ul>
     </section>
@@ -44,15 +49,16 @@
           <hr />
 
           <h4>{{ movie.title }}</h4>
+          <p>{{ movie.overview }}</p>
           <!--
             TODO 2
             The button should be disabled if this movie
             is already in the user's watchlist
           -->
-          <button @click="addToWatchlist(movie)">
+          <button @click="addToWatchlist(movie)" :disabled="checkAdded(movie.title)">
             Add to Watchlist
           </button>
-
+            
           <!--
             TODO 1
             Create a paragraph containing the movie object's
