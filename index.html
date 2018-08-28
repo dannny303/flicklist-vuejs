@@ -76,9 +76,8 @@
         -->
         <ul class="list-group">
           <li v-for="movie in browseItems" class="list-group-item">
-            <hr />
-
             <h4>{{ movie.title }}</h4>
+            <p>{{ movie.overview }}</p>
             <button class="btn btn-primary"
               @click="addToWatchlist(movie)"
               :disabled="watchlistItems.includes(movie)"
@@ -86,7 +85,7 @@
               Add to Watchlist
             </button>
 
-            <p>{{ movie.overview }}</p>
+            
           </li>
         </ul>
       </section>
