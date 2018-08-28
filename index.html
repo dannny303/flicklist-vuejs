@@ -55,11 +55,16 @@
           "input-group", "form-control", "input-group-btn", "btn", "btn-primary"
           -->
           <form id="form-search">
-            <input type="text" v-model="searchTerm" />
-            <input
-              type="submit" value="Search By Title"
-              @click="searchMovies(searchTerm)"
-            />
+            <div class="input-group">
+              <input class="form-control" type="text" v-model="searchTerm" placeholder="Search for Movies"/>
+              <span class="input-group-btn">
+                <input
+                  type="submit" value="Search By Title"
+                  class="btn btn-primary"
+                  @click="searchMovies(searchTerm)"
+                />
+              </span>
+            </div>
           </form>
         </header>
 
@@ -69,12 +74,12 @@
           Use the following classes:
           "list-group", "list-group-item", "btn", "btn-primary"
         -->
-        <ul>
-          <li v-for="movie in browseItems">
+        <ul class="list-group">
+          <li v-for="movie in browseItems" class="list-group-item">
             <hr />
 
             <h4>{{ movie.title }}</h4>
-            <button
+            <button class="btn btn-primary"
               @click="addToWatchlist(movie)"
               :disabled="watchlistItems.includes(movie)"
             >
